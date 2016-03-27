@@ -17,7 +17,7 @@ github_username:  sorhus
 
 permalink: /:year/:month/:day/:title/
 paginate: 5
-highlighter: pygments
+highlighter: rouge
 
 # Build settings
 markdown: kramdown
