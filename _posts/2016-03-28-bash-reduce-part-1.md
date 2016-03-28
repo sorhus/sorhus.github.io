@@ -1,6 +1,8 @@
 ---
 layout: post
 title:  "bash-reduce part 1"
+date:   2016-03-27
+categories: bash-reduce
 ---
 Almost 2 years ago now, I wrote a toy project: a map-reduce framework in bash and
 awk. I was working a lot with [Hadoop](http://hadoop.apache.org/) map-reduce and
@@ -41,7 +43,7 @@ same key. To summarize, we can describe the functions in a scala like syntax as
 {% highlight scala %}
 def map(input: I): List[(key: K, value: V)]
 
-def reduce(key: K, values: List[V]): R
+def reduce(key: K, values: List[V]): (K, R)
 {% endhighlight %}
 <br>
 
@@ -50,10 +52,10 @@ to process one unit of input in the mapper and how to process all the values for
 a given key in the reducer. It hides so much complexity and I guess that's the
 main reason why Hadoop has had such a massive impact over the last decade.
 
+### mapper
 So what does a solution to the word count problem look like in bash-reduce? Let's
 start with the mapper:
 
-### mapper
 {% highlight bash %}
 {
   for(i = 1; i <= NF; i++) {
